@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-ui: "Geist", sans-serif;
+  --color-bg: #0a0a0f;
+  --color-fg: #e8e8f0;
+  --color-accent: #00ffc8;
+  --color-accent-dim: #00cc9f;
+  --color-warm: #ff6b35;
+  --color-warm-dim: #cc542a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+canvas {
+  display: block;
+  touch-action: none;
+}
+
+.hidden-delight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hint-text {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: var(--color-fg);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.hint-text.visible {
+  opacity: 1;
+}
+
+.hint-text.fade {
+  opacity: 0;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.breath-indicator {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
